@@ -10,13 +10,13 @@
 
 4. (Data) Describe what **LIFO** and **FIFO** are and how they relate to **Stack** and **Queue** respectively. 
 
-5. X(Data) Describe the difference between an **Abstract Data Type** and **Data Structure**.
+5. (Data) Describe the difference between an **Abstract Data Type** and **Data Structure**.
 
-6. X (TDD) Describe at least **3 primary motivations** for test suites.
+6. (TDD) Describe at least **3 primary motivations** for test suites.
 
 7. (TDD) Explain the difference between **Unit Tests** and **Integration Tests**. 
 
-8. X (TDD) Describe the basic **workflow of TDD**.
+8. (TDD) Describe the basic **workflow of TDD**.
 
 9. (TDD) Explain the case of a **double or mock** when writing unit tests.
 
