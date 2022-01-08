@@ -22,5 +22,5 @@
   5. What if I want to group my data?
   6. Can I use the result of a query in a different query?
   7. How can I query relationships across tables?
-  8. What is a seelf-join? 
+  8. What is a self-join? 
 
