@@ -1,6 +1,15 @@
 # Rails 1 Assessment Learning Objectives
-*[source](https://open.appacademy.io/learn/ch---nov-2021-ny-cohort/sql-draft/study-guide---rails-1-assessment)
 
+- [a/A Study Guide](https://open.appacademy.io/learn/ch---nov-2021-ny-cohort/sql-draft/study-guide---rails-1-assessment)
+
+- [Kahoot SQL](https://play.kahoot.it/v2/?quizId=85da63ee-4075-42f8-94b3-2cd88de6915a)
+
+- [Notes Official](https://github.com/appacademy/2021-11-29-NYC-Lecture-Notes/blob/main/w5d2-sql-intro/slides.md)
+
+- [Demo Official](https://github.com/appacademy/2021-11-29-NYC-Lecture-Notes/tree/main/w5d2-sql-intro/demo/skeleton)
+
+<br><br/>
+-----
 <br><br/>
 
 ------
@@ -15,6 +24,7 @@
 - Demonstrate how to solve more complicated problems using a SELF JOIN to extract multiple types of information from the same table
 
 - Know the basic Postgres commands to interact with the Postgres API via your terminal.
+
 <br><br/>
 -----
 ## Migrations 
