@@ -17,7 +17,11 @@
   
   - Please note, this was not meant to be a complete guide.  See [additional](https://www.google.com/search?q=markdown+guide&sxsrf=AOaemvI5q5O4VGw7nnrrLaE8ombY2FFojA%3A1641669210757&ei=WuLZYf7ZLdOpptQPy4iveA&ved=0ahUKEwj-7pSx7qL1AhXTlIkEHUvECw8Q4dUDCA8&uact=5&oq=markdown+guide&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBQgAEJECMgoILhCABBCHAhAUMgUIABCRAjIFCAAQkQIyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCAAQRxCwAzoKCAAQgAQQhwIQFDoNCAAQgAQQhwIQsQMQFDoICAAQgAQQsQNKBAhBGABKBAhGGABQ8A1Y5iBgvyFoAXACeACAAUWIAasEkgEBOZgBAKABAcgBCMABAQ&sclient=gws-wiz) for more reputable information.  
 
-  - To begin, create a new file in your program of choice with the `.md` filetype in the name.   
+  - To begin, create a new file in your program of choice with the `.md` filetype in the name.  
+  
+  - Preview in VSCode using ` shift + cmd + v ` or right-clicking the file and selecting `preview`.
+
+  - View 'raw' code on Github to see full syntax.    
 
 <br><br/>
 
