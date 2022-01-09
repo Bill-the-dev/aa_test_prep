@@ -28,6 +28,7 @@
 - [Demo Official](https://github.com/appacademy/2021-11-29-NYC-Lecture-Notes/tree/main/w5d2-sql-intro/demo/skeleton)
 
 <br><br/>
+
 -----
 ## Migrations 
 -----

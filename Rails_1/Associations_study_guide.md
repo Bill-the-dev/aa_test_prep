@@ -2,12 +2,18 @@
 -----
 
 - Identify the role of associations in a Rails model.
+
 - Given a rails project with two associated models, write a `belongs_to` and `has_many` association relating the two.
+
 - Identify how to know which Rails model gets the `belongs_to` association
+
 - Demonstrate knowledge of which variables to refer to for the `primary_key`, `foriegn_key` and `class_name` for each association.
+
 - Given a rails project with models and a `has_many` or `belongs_to association`, write a `has_many through` association to access data through another model.
+
 - Identify the difference between a `has_many through` and a `has_one` association
 
+- [a/A Rails 1 Practice Assessment Video](https://open.appacademy.io/learn/ch---nov-2021-ny-cohort/sql-draft/rails-1-practice---associations)
 <br><br/>
 
 -----
