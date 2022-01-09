@@ -11,6 +11,14 @@
 
 - [a/A Rails 1 Practice Assessment Video](https://open.appacademy.io/learn/ch---nov-2021-ny-cohort/sql-draft/rails-1-practice---migrations)
 
+- [Notes Official](https://github.com/appacademy/2021-11-29-NYC-Lecture-Notes/blob/main/w5d4-models-migrations/slides.md)
+
+- [Rails Guides Command Line](https://guides.rubyonrails.org/command_line.html)
+
+- [Rails Guides Migration](https://guides.rubyonrails.org/active_record_migrations.html)
+
+
+
 <br><br/>
 
 -----
@@ -125,10 +133,106 @@
 ## Terminal Commands
 
 
+- `bundle exec rails g migration Create{TableName}`
+
+- `bundle exec rails g migration Add{ColumnName}To{TableName}`
+
+- `bundle exec rails g migration Remove{ColumnName}From{TableName}`
+
+- `bundle exec rails g migration AddIndexTo{TableName}`
+
+- `bundle exec rails db:migrate`
+
+- `bundle exec rails db:migrate:status`
+
+- `rails g` will create a generator list
+
+- `rails --help` will show help file
+
+- `rails destroy` opposite of generate 
+
+- [Rails Guides Command Line](https://guides.rubyonrails.org/command_line.html)
+
+- [Rails Guides Migration](https://guides.rubyonrails.org/active_record_migrations.html)
+
 -----
 
 ## Migration Functions
 
+- create_table
+- add_column
+- change_column
+- add_index
+
+
+-----
+
+## Advanced Rails Migration
+
+Rails has the ability to more than just generate an empty migration
+
+```
+rails generate migration AddPartNumberToProducts
+```
+```Ruby
+class AddPartNumberToProducts < ActiveRecord::Migration[7.0]
+  def change
+  end
+end
+```
+
+Based on naming conventions and additional (optional) arguments it can also start fleshing out the migration.
+
+If the migration name is of the form **"AddColumnToTable"** or **"RemoveColumnFromTable"** and is followed by a list of column names and types then a migration containing the appropriate [add_column](https://guides.rubyonrails.org/active_record_migrations.html#:~:text=containing%20the%20appropriate-,add_column,-and%20remove_column%20statements) and [remove_column](https://guides.rubyonrails.org/active_record_migrations.html#:~:text=appropriate%20add_column%20and-,remove_column,-statements%20will%20be) statements will be created.
+
+```
+bin/rails generate migration AddPartNumberToProducts part_number:string:index
+
+```
+```Ruby
+class AddPartNumberToProducts < ActiveRecord::Migration[7.0]
+  def change
+    add_column :products, :part_number, :string
+    add_index :products, :part_number
+  end
+end
+```
+
+You can also change more than one column
+
+```
+bin/rails generate migration AddDetailsToProducts part_number:string price:decimal
+```
+```Ruby
+class AddDetailsToProducts < ActiveRecord::Migration[7.0]
+  def change
+    add_column :products, :part_number, :string
+    add_column :products, :price, :decimal
+  end
+end
+```
+
+If the migration name is of the form **"CreateXXX"** and is followed by a list of column names and types then a migration creating the table **XXX** with the **columns listed** will be generated. For example:
+
+```
+bin/rails generate migration CreateProducts name:string part_number:string
+```
+```Ruby
+class CreateProducts < ActiveRecord::Migration[7.0]
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.string :part_number
+
+      t.timestamps
+    end
+  end
+end
+```
+
+Rails can create boilerplate versions of `belongs_to`, produce `joins` tables, and much more.
+
+>All material sourced from [Rails Guides](https://guides.rubyonrails.org/active_record_migrations.html)
 
 
 
