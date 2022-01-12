@@ -15,6 +15,67 @@
 
 -----
 
+## ActiveRecord Query Methods
+
+- `includes(*args)`
+  Specify relationships to be included in the result set.
+  
+  Allows you to access the address attribute of the User model without firing an additional query. This will often result in a performance improvement over a simple join.
+
+  ```Ruby
+  User.includes(:posts).where('posts.name = ?', 'example')
+
+  User.includes(:posts).where(posts: { name: 'example' })
+  ```
+
+  You can also specify multiple relationships
+
+  ```Ruby 
+  users = User.includes(:address, :friends)
+  ```
+
+- `group(*args)`
+  Returns an array with distinct records based on the group attribute
+
+  ```Ruby
+  User.select([:id, :name])
+  # => [#<User id: 1, name: "Oscar">, #<User id: 2, name: "Oscar">, #<User id: 3, name: "Foo">]
+
+  User.group(:name)
+  # => [#<User id: 3, name: "Foo", ...>, #<User id: 2, name: "Oscar", ...>]
+
+  User.group('name AS grouped_name, age')
+  # => [#<User id: 3, name: "Foo", age: 21, ...>, #<User id: 2, name: "Oscar", age: 21, ...>, #<User id: 5, name: "Foo", age: 23, ...>]
+  ```
+
+- `having(opts, *rest)`
+  Allows to specify a HAVING clause. Note that you can’t use HAVING without also specifying a GROUP clause.
+
+  Req'd for aggregate methods.
+
+  ```Ruby
+  Order.having('SUM(price) > 30').group('user_id')
+  ```
+
+    - Aggregate methods:
+
+    - `MAX and MIN`
+      ```Ruby 
+      Movie.having('MAX(movies.score) < ?', 8)
+      ```
+
+- `distinct(value = true)`
+  Specifies whether the records should be unique or not.
+  
+  ```Ruby
+  User.select(:name).distinct
+  # Returns 1 record per distinct name
+  ```
+
+
+
+-----
+
 ## Pluck v Select
 
 ### Select

@@ -21,7 +21,11 @@
   
   - Preview in VSCode using ` shift + cmd + v ` or right-clicking the file and selecting `preview`.
 
-  - View 'raw' code on Github to see full syntax.    
+  - View 'raw' code on Github to see full syntax.
+
+  - **VSCode Extensions** 
+      - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) adds some fantastic editor options 
+      - [GitHub Markdown Preview](https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview) adds a cleaner GitHub-style preview    
 
 <br><br/>
 
