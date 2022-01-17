@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  user_id: 1
+  garden_id: 1
+
+two:
+  type: 
+  user_id: 1
+  garden_id: 1

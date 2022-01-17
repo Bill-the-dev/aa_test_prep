@@ -1,0 +1,23 @@
+<h1>This is a garden!</h1>
+
+<h2><%= @garden.name %></h2>
+<h4>Size: <%= @garden.size %></h4>
+
+<h5>Flowers:</h5>
+<ul><%@garden.flowers.each do |flower| %>
+    <%= flower.flower_type %>
+    <% end%>
+</ul>
+
+<form action="<%= flowers_url %>" method="POST">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <label>Choose a Flower type to add:
+        <input name ="flower[flower_type]" value="">
+    </label>
+        <input type="hidden" name ="flower[user_id]" value=<%= User.last.id %>>
+        <input type="hidden" name ="flower[garden_id]" value=<%= @garden.id %>>
+    <button type="submit">Create A Flower</button>
+</form>

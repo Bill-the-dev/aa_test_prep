@@ -1,0 +1,16 @@
+<h1>Create a new Garden!</h1>
+
+<form action="<%= gardens_url %>" method="POST">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <label>Choose a garden name:
+        <input name ="garden[name]" value="">
+    </label>
+    <label>Choose a garden size:
+        <input name ="garden[size]" value="">
+    </label>
+        <input type="hidden" name ="garden[user_id]" value=<%= User.last.id %>>
+    <button type="submit">Create A New Garden</button>
+</form>
