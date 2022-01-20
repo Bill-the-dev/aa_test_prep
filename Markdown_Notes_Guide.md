@@ -14,6 +14,8 @@
   - Organize your coding notes with a mixture of formatted text and code **_in the same document_**!
 
   - This guide was written using Visual Studio Code, but there are plenty of other ways to write a Markdown document. Check out [dilliger.io](https://dillinger.io/) or [stackedit.io](https://stackedit.io/) for a good online Markdown editor.
+
+  - A aimilar alternative (with more features and UI) is [Notion](notion.so).  This is a phenomenal tool that uses markdown in a web and app based notes program.  (Thanks for the recommendation Steven Wu!)
   
   - Please note, this was not meant to be a complete guide.  See [additional](https://www.google.com/search?q=markdown+guide&sxsrf=AOaemvI5q5O4VGw7nnrrLaE8ombY2FFojA%3A1641669210757&ei=WuLZYf7ZLdOpptQPy4iveA&ved=0ahUKEwj-7pSx7qL1AhXTlIkEHUvECw8Q4dUDCA8&uact=5&oq=markdown+guide&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBQgAEJECMgoILhCABBCHAhAUMgUIABCRAjIFCAAQkQIyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCAAQRxCwAzoKCAAQgAQQhwIQFDoNCAAQgAQQhwIQsQMQFDoICAAQgAQQsQNKBAhBGABKBAhGGABQ8A1Y5iBgvyFoAXACeACAAUWIAasEkgEBOZgBAKABAcgBCMABAQ&sclient=gws-wiz) for more reputable information.  
 
@@ -106,5 +108,18 @@ This is an Unordered List:
 
 
 -----
+
+
+## Collapsable Headers
+
+<details>
+<summary><b>My section header in bold</b></summary>
+
+Any folded content here. It requires an empty line just above it.
+
+</details>
+
+--- 
+
 > Sourced from [markdownguide.org](https://www.markdownguide.org/) and [w3schools.io](https://www.w3schools.io/file/markdown-introduction/)
 
