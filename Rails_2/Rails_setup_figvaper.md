@@ -1,3 +1,5 @@
+(Thank you Emily L. for sharing!)
+
 ## New Rails App
 
 - Create your new project, if no skeleton.  Version specific, no git, using postrgres.
