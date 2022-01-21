@@ -1,11 +1,17 @@
 (Thank you Emily L. for sharing!)
 
-## New Rails App
+<details>
+<summary><b>Creating Rails App</b></summary>
 
 - Create your new project, if no skeleton.  Version specific, no git, using postrgres.
-  ```
+  ```sh
   rails _5.2.3_ new -G Record_Shelf --database=postgresql
   ```
+
+
+
+</details>
+
 
 ## Set Up
 - Configure gemfile and `bundle install`
@@ -55,6 +61,7 @@
 ```Ruby
 # application controller
 - CELLL
+    private 
     - current_user
     - ensure_logged_in
     - login!(user)
@@ -65,6 +72,7 @@
 
 ```Ruby
 # user controller
+- before_action :require_signed_in!
 - new
 - create
 - show
@@ -226,10 +234,9 @@ end
 
 `current_user`
 ```Ruby
-def logout!
-  current_user.reset_session_token! if logged_in?
-  session[:session_token] = nil
-  @current_user = nil
+def current_user
+  return nil if !session[:session_token]
+  @current_user ||= User.find_by(session_token: session[:session_token])
 end
 ```
 
