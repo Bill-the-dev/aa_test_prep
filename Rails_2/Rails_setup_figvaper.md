@@ -18,14 +18,25 @@
     <summary><b>Gem List</b></summary>
 
     ```Ruby
+      #...
+      gem 'bcrypt' # comment in
+      #...
+    group :development do
       gem 'annotate'
-      gem 'bcrypt'
+      gem 'pry-rails'
       gem 'better_errors'
       gem 'binding_of_caller'
-      gem 'byebug'
-      gem 'pry-rails'
-      #possible add-ons
-      # Testing: 'capybara', 'rspec', 'rspec-rails', 'factory_bot_rails', 'faker', 'shoulda-matchers'
+      
+    #possible add-ons:
+      
+    # group :development, :test do
+    #   gem 'capybara'
+    #   gem 'rspec'
+    #   gem 'rspec-rails', '~3.5' 
+    #   gem 'launchy'
+    #   gem 'shoulda-matchers'
+    #   gem 'factory_bot_rails'
+    #   gem 'faker'
     ```
     </details>
 
