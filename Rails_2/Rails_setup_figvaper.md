@@ -53,7 +53,7 @@
 
       - add `resource :users` for standard 8 routes
       - add `resource :session, only: [:new, :create, :destroy]`
-      - nested routes from `has_many`/`belongs_to` associations
+      - nested routes usually imply `has_many`/`belongs_to` associations 
       - reference `$ rails routes`
 
       </details>
