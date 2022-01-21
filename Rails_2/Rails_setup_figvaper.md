@@ -1,7 +1,8 @@
-(Thank you Emily L. for sharing!)
+(Thank you Emily L. for putting this together!)  
+(Note, the triangles indicate toggled drop-downs)
 
 <details>
-<summary><b>Creating Rails App</b></summary>
+<summary><b>Creating Rails App</b></summary> 
 
 - Create your new project, if no skeleton.  Version specific, no git, using postrgres.
   ```sh
