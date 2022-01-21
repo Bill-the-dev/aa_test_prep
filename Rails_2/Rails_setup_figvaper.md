@@ -8,34 +8,48 @@
   rails _5.2.3_ new -G Record_Shelf --database=postgresql
   ```
 
-
-
 </details>
 
 
 ## Set Up
 - Configure gemfile and `bundle install`
-  ```Ruby
-    gem 'annotate'
-    gem 'bcrypt'
-    gem 'better_errors'
-    gem 'binding_of_caller'
-    gem 'byebug'
-    gem 'pry-rails'
-    #possible add-ons
-    # Testing: 'capybara', 'rspec', 'rspec-rails', 'factory_bot_rails', 'faker', 'shoulda-matchers'
-  ```
+  - <details>
+    <summary><b>Gem List</b></summary>
+
+    ```Ruby
+      gem 'annotate'
+      gem 'bcrypt'
+      gem 'better_errors'
+      gem 'binding_of_caller'
+      gem 'byebug'
+      gem 'pry-rails'
+      #possible add-ons
+      # Testing: 'capybara', 'rspec', 'rspec-rails', 'factory_bot_rails', 'faker', 'shoulda-matchers'
+    ```
+    </details>
+
 - Create db `$ bundle exec rails db:create` 
 
 
-## Migrations
+## Create Models, Migrations, Controllers, and Routes
 - Create tables, models, migrations: `$ be rails g model Name column:type:index`
     - null: false, unique: true, etc. 
-- Migrate `$ bundle exec rails db:migrate db:test:load`
-- Create routes in `config/routes.rb` 
-    - add `resource :users` for standard 8 routes  
-    - ref with `$ rails routes`
 
+- Create routes: `/config/routes.rb` 
+    - <details>
+      <summary><b>Routes Detail</b></summary>
+
+      - add `resource :users` for standard 8 routes
+      - add `resource :session, only: [:new, :create, :destroy]`
+      - nested routes from `has_many`/`belongs_to` associations
+      - reference `$ rails routes`
+
+      </details>
+
+- Create controllers: `$ be rails g controller Names`
+    - *session plural here only in name*
+
+- Migrate `$ bundle exec rails db:migrate db:test:load`
 
 ## Models
 ```Ruby 
@@ -54,7 +68,7 @@
 ```Ruby
 # goal/other model
 - Validations
-- Associations
+- Associations #check nested routes
 ```
 
 ## Controllers
@@ -286,7 +300,7 @@ end
 `logged_in?`
 ```Ruby
 def logged_in?
-  !!current_user # 
+  !!current_user 
 end
 ```
 </details>
