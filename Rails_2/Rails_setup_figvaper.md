@@ -348,6 +348,16 @@ end
 ```
 </details>
 
+<details>
+<summary><b>h (it's silent, guess?)</b></summary>
+
+```Ruby
+  # Expose these methods to the views
+  helper_method :current_user, :signed_in?
+```
+
+</details>
+
 ---
 
 ### Users Controller
