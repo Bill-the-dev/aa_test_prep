@@ -98,7 +98,8 @@
 
 ```Ruby
 # goal/other model
-- Validations
+- Validations 
+    - (boolean) validates :status, inclusion: { in: [true, false] }
 - Associations #check nested routes
 ```
 
