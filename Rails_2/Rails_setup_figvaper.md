@@ -1,5 +1,22 @@
 (Thank you Emily L. for putting this together!)  
 (Note, the triangles indicate toggled drop-downs)
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Set Up](#set-up)
+- [Create Models, Migrations, Controllers, and Routes](#create-models-migrations-controllers-and-routes)
+- [Models](#models)
+- [Controllers](#controllers)
+- [Views/Features](#viewsfeatures)
+- [FIGVAPER CELL (hidden)](#figvaper-cell-hidden)
+  - [User](#user)
+  - [Application Controller](#application-controller)
+  - [Users Controller](#users-controller)
+  - [Sessions Controller](#sessions-controller)
+  - [Goals Controller](#goals-controller)
+
+
+
+
 
 <details>
 <summary><b>Creating Rails App</b></summary> 
