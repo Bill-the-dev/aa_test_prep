@@ -588,7 +588,7 @@ end
 
     if @goal 
       @goal.destroy
-      redirect_to user_url(current_user.id)
+      redirect_to users_url
     else
       flash[:errors] = ["You cannot delete someone else's goal."]
       redirect_to users_url
