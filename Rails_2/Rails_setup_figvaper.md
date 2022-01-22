@@ -2,6 +2,7 @@
 (Note, the triangles indicate toggled drop-downs)
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
+- [New Rails App](#new-rails-app)
 - [Set Up](#set-up)
 - [Create Models, Migrations, Controllers, and Routes](#create-models-migrations-controllers-and-routes)
 - [Models](#models)
@@ -16,7 +17,8 @@
 
 
 
-
+---
+## New Rails App
 
 <details>
 <summary><b>Creating Rails App</b></summary> 
