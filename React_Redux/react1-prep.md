@@ -214,6 +214,16 @@
   
   <summary>updatePost makes request and returns an ajax promise</summary> 
 
+  ```JS
+  export const updatePost = (post) => {
+    return $.ajax({
+      url: `api/posts/${post.id}`,
+      method: 'PATCH',
+      data: { post }
+    })
+  }
+  ```
+
 </details>
 
 
@@ -221,7 +231,22 @@
   
   <summary>deletePost makes request and returns an ajax promise</summary> 
 
+  ```JS
+  export const deletePost = (postId) => {
+    return $.ajax({
+      url: `api/posts/${postId}`,
+      method: 'DELETE'
+    })
+  }
+  ```
+
 </details>
+
+*[jQuery.ajax() Docs](https://api.jquery.com/Jquery.ajax/)*
+
+---
+
+
 
 
 
