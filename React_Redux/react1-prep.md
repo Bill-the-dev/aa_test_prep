@@ -555,17 +555,427 @@
 
 ### Component - Post Index Test
 
+Recommended to start with the `post_indec_container.jsx` before heading to the `post_index.jsx` file and specs.  Specs will not run w/o it.
 
 <details>
   
-  <summary>TOGGLE</summary> 
+  <summary>`Post_Index_Container`</summary> 
+
+  ```JS
+  import { connect } from 'react-redux';
+  import PostIndex from './post_index';
+  import { fetchPosts, deletePost } from '../../actions/post_actions';
+
+  const mSTP = state => ({
+    posts: Object.values(state.posts)
+  })
+
+  const mDTP = dispatch => ({
+    fetchPosts: () => dispatch(fetchPosts()),
+    deletePost: (postId) => dispatch(deletePost(postId))
+  })
+
+  export default connect(mSTP, mDTP)(PostIndex)
+  ```
+  
+  - mapStateToProps
+  - mapDispatchToProps
+  - connect(mSTP, mDTP)(PostIndex) 
+
 
 </details>
 
 
 <details>
   
-  <summary>TOGGLE</summary> 
+  <summary>correctly maps state to props / dispatch to props</summary> 
+
+  ```JS
+  // import React from 'react';
+  // import PostIndexItem from './post_index_item';
+  // import CreatePostFormContainer from './create_post_form_container';
+
+  class PostIndex extends React.Component {
+    // class must render and return something
+    // constructor not needed
+    render() {  
+      return (
+        <div>
+          <ul> </ul>
+        </div>
+      );
+    }
+  }
+
+  export default PostIndex;
+  ```
+
+  (2 test specs passed after container setup)
+
+</details>
+
+
+<details>
+  
+  <summary>fetches posts after being mounted </summary> 
+
+  ```JS
+  // import React from 'react';
+  // import PostIndexItem from './post_index_item';
+  // import CreatePostFormContainer from './create_post_form_container';
+
+  class PostIndex extends React.Component {
+    
+    componentDidMount() {
+      this.props.fetchPosts();
+    }
+    
+    // render() {  
+    //   return (
+      // ...
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>renders a PostIndexItem for each post, passing in the `post` object and `deletePost` action as props</summary> 
+
+
+  ```JS
+  // import React from 'react';
+  // import PostIndexItem from './post_index_item';
+  // import CreatePostFormContainer from './create_post_form_container';
+  import { deletePost } from '../../util/post_api_util';
+
+  class PostIndex extends React.Component {
+
+    // componentDidMount() {
+    //   this.props.fetchPosts();
+    // }
+
+    render() { 
+      const {posts, deletePost} = this.props;
+      // destructure from props
+      // this.props object extracts post key, give variable called post we can use to see the value at that post  
+      
+      return (
+        <div>
+          <ul>
+            {
+              posts.map((post) => {
+                return <PostIndexItem 
+                  key={post.id} // each child warning
+                  post={post} 
+                  deletePost={deletePost} 
+                />;
+              })
+            }
+          </ul>
+        </div>
+      );
+    }
+  }
+
+  // export default PostIndex;
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>contains a PostFormContainer component</summary> 
+
+  ```JS
+  // import React from 'react';
+  // import PostIndexItem from './post_index_item';
+  // import CreatePostFormContainer from './create_post_form_container';
+  // import { deletePost } from '../../util/post_api_util';
+
+  class PostIndex extends React.Component {
+
+    // componentDidMount() {
+    //   this.props.fetchPosts();
+    // }
+
+    render() { 
+      // const {posts, deletePost} = this.props;  
+      
+      return (  // all inside one div for return!
+        <div>  
+          {/* <ul>
+            ...
+          </ul> */ }
+          <CreatePostFormContainer />
+        </div>
+      );
+    }
+  }
+
+  // export default PostIndex;
+  ```
+
+</details>
+
+---
+
+### Component - Post Index Item Test
+
+
+<details>
+  
+  <summary>should be a function</summary>
+
+  ```JS 
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  const PostIndexItem = (props) => {
+    return (
+      <li></li>
+    )
+  }
+
+  export default PostIndexItem;
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>shows the post's title as a Link to the post's show page</summary> 
+
+  ```JS
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  const PostIndexItem = (props) => {
+    return (
+      <li>
+        <Link to={`/posts/${props.post.id}`} >{props.post.title}</Link>  
+      </li>
+    )
+  }
+
+  export default PostIndexItem;
+  ```
+
+  - Hint, `{Link}` is imported.  Check `app.jsx` that shows all routes!
+  - Props are passed down, contain both `id` and `title`
+  - String interpolate `${}` using \`\` inside `.jsx` will error!  This is a JS feature, so must nest inside `{``}` 
+
+</details>
+
+
+<details>
+  
+  <summary>has a link that links to the post edit page</summary> 
+
+  ```JS
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  const PostIndexItem = (props) => {
+    return (
+      <li>
+        <Link to={`/posts/${props.post.id}`} >{props.post.title}</Link>   
+        <Link to={`/posts/${props.post.id}/edit`} >Edit</Link>  
+      </li>
+    )
+  }
+
+  export default PostIndexItem; 
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>has a button that deletes the post when clicked</summary> 
+
+  ```JS 
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  const PostIndexItem = (props) => {
+    return (
+      <li>
+        <Link to={`/posts/${props.post.id}`} >{props.post.title}</Link>   
+        <Link to={`/posts/${props.post.id}/edit`} >Edit</Link>
+        <button onClick={() => props.deletePost(props.post.id)}>Delete Post</button>   
+      </li>
+    )
+  }
+
+  export default PostIndexItem; 
+  ```
+
+  - Note: `onClick={props.deletePost(props.post.id)}` is BAD.  This is not handing off this function that will delete the post, we are invoking it to delete as soon as it renders.
+  - Need to hand FUNCTIONS to eventlisteners.  Turn it into an arrow function!
+
+</details>
+
+
+<details>
+  
+  <summary>Optional: clean it up!</summary> 
+
+  ```JS
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  const PostIndexItem = ({post, deletePost}) => {
+    return (
+      <li>
+        <Link to={`/posts/${post.id}`} >{post.title}</Link>  
+        <Link to={`/posts/${post.id}/edit`} >Edit</Link>
+        <button onClick={() => deletePost(post.id)}>Delete Post</button>  
+      </li>
+    )
+  }
+
+  export default PostIndexItem;
+  ```
+
+  - By destructing the props into post and delete post, we can remove props in all return references. 
+</details>
+
+---
+
+### Component - Create Post Form  
+
+Recommended to start with `create_post_form_container.jsx` before heading to the `post_form.jsx` file and specs.  Specs will error w/o it.
+
+<details>
+  
+  <summary>`create_post_form_container`</summary> 
+
+  ```JS
+  // import { connect } from 'react-redux';
+  // import { withRouter } from 'react-router-dom';
+  // import PostForm from './post_form';
+  // import { createPost } from '../../actions/post_actions';
+
+  const mSTP = state => ({
+    post: {
+      title: '',
+      body: ''
+    },
+    formType: 'Create Post'
+  })
+
+  const mDTP = dispatch => ({
+    action: post => dispatch(createPost(post))
+  })
+
+  export default connect(mSTP, mDTP)(PostForm)
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>correctly maps state to props / dispatch to props</summary> 
+
+  (2 specs)
+
+  ```JS
+  // import React from 'react';
+
+  class PostForm extends React.Component {
+    render() {
+      return null;
+    }
+  }
+
+  export default PostForm
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>3 spec</summary> 
+
+  ```JS
+  // import React from 'react';
+
+  class PostForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = this.props.post;
+    }
+
+    update(field) {
+      return e => {
+        this.setState({ [field]: e.currentTarget.value });
+      };
+    }
+    render() {
+      return (
+        <form action="">
+          <label >Title
+            <input
+              type="text"
+              value={this.state.title}
+              onChange={this.update('title')}
+            />
+          </label>
+
+        </form>
+      );
+    }
+  }
+
+  // export default PostForm;
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>5 spec</summary> 
+
+  ```JS
+  class PostForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = this.props.post;
+    }
+
+    update(field) {
+      return e => {
+        this.setState({ [field]: e.currentTarget.value });
+      };
+    }
+    render() {
+      return (
+        <form action="">
+          <label >Title
+            <input
+              type="text"
+              value={this.state.title}
+              onChange={this.update('title')}
+            />
+          </label>
+          <label >Body
+            <textarea
+              value={this.state.body}
+              onChange={this.update('body')}
+            />
+          </label>
+        </form>
+      );
+    }
+  }
+  ```
 
 </details>
 
