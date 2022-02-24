@@ -6,6 +6,14 @@
   <summary>TOGGLE</summary> 
 
 </details>
+(WIP)
+
+<details>
+  
+  <summary>TOGGLE</summary> 
+
+</details>
+(WIP)z
 
 ## Instructions
 
@@ -901,47 +909,9 @@ Recommended to start with `create_post_form_container.jsx` before heading to the
 
 <details>
   
-  <summary>3 spec</summary> 
+  <summary>pre-fills title and body / updates title and body</summary> 
 
-  ```JS
-  // import React from 'react';
-
-  class PostForm extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = this.props.post;
-    }
-
-    update(field) {
-      return e => {
-        this.setState({ [field]: e.currentTarget.value });
-      };
-    }
-    render() {
-      return (
-        <form action="">
-          <label >Title
-            <input
-              type="text"
-              value={this.state.title}
-              onChange={this.update('title')}
-            />
-          </label>
-
-        </form>
-      );
-    }
-  }
-
-  // export default PostForm;
-  ```
-
-</details>
-
-
-<details>
-  
-  <summary>5 spec</summary> 
+  (3 specs)
 
   ```JS
   class PostForm extends React.Component {
@@ -950,19 +920,20 @@ Recommended to start with `create_post_form_container.jsx` before heading to the
       this.state = this.props.post;
     }
 
-    update(field) {
+    handleInput(field) {
       return e => {
-        this.setState({ [field]: e.currentTarget.value });
+        this.setState({ [field]: e.target.value });
+        // must have constructor to use setState!
       };
     }
     render() {
       return (
-        <form action="">
+        <form>
           <label >Title
             <input
               type="text"
               value={this.state.title}
-              onChange={this.update('title')}
+              onChange={this.handleInput('title')}
             />
           </label>
           <label >Body
@@ -977,34 +948,252 @@ Recommended to start with `create_post_form_container.jsx` before heading to the
   }
   ```
 
-</details>
-
-
-<details>
-  
-  <summary>TOGGLE</summary> 
+  - pre-fills title and body input fields with empty string
+  - updates the title field when it changes 
+  - updates the body field when it changes
 
 </details>
 
 
 <details>
   
-  <summary>TOGGLE</summary> 
+  <summary>should contain text indicating it is the create form / triggers correct action when submitted</summary> 
+
+  (2 specs)
+
+  ```JS
+  // import React from 'react';
+
+  class PostForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = this.props.post;
+      // state looks like: {title: '', body: ''}
+      this.handleInput = this.handleInput.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(e) {
+      e.preventDefault();
+      this.props.action(this.state)
+    }
+
+    // handleInput(field) {
+    //   return e => {
+    //     this.setState({ [field]: e.target.value });
+    //   };
+    // }
+    render() {
+      return (
+        <div>
+          <h1>{this.props.formType}</h1> 
+          <form onSubmit={this.handleSubmit}> 
+            {/* <label >Title
+              <input
+                type="text"
+                value={this.state.title}
+                onChange={this.handleInput('title')}
+                // update can also be called update in videos
+              />
+            </label>
+            <label >Body
+              <textarea
+                value={this.state.body}
+                onChange={this.handleInput('body')}
+              />
+            </label> */}
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      );
+    }
+  }
+  export default PostForm;
+  ```
 
 </details>
 
 
 <details>
   
-  <summary>TOGGLE</summary> 
+  <summary>`edit_post_form_container`</summary> 
+
+  ```JS
+  class EditPostForm extends React.Component {
+    componentDidMount() {
+      this.props.fetchPost(this.props.match.params.postId);
+    }
+
+    render() {
+      // DO NOT MODIFY THIS FUNCTION
+      const { action, formType, post } = this.props;
+
+      // Hint: The post will not exist on the first render - what do we need to do
+      // to get it?
+      if (!post) return null;
+      return (
+        <PostForm
+          action={action}
+          formType={formType}
+          post={post} />
+      );
+    }
+  }
+
+  const mSTP = (state, ownProps) => ({
+    post: state.posts[ownProps.match.params.postId],
+    formType: 'Update Post'
+  });
+
+  const mDTP = (dispatch) => ({
+    fetchPost: (postId) => dispatch(fetchPost(postId)),
+    action: (post) => dispatch(updatePost(post))
+  });
+
+  export default connect(mSTP, mDTP)(EditPostForm);
+  ```
+
+</details>
+
+
+---
+
+### Component - Post Show Test
+
+Recommended to complete `post_show_container` before the `post_show` component.
+
+<details>
+  
+  <summary>`post_show_container`</summary> 
+
+  ```JSX
+  // import { connect } from 'react-redux';
+  // import PostShow from './post_show';
+  // import { fetchPost } from '../../actions/post_actions';
+
+  const mSTP = (state, ownProps) => ({
+    post: state.posts[ownProps.match.params.postId]
+  })
+
+  const mDTP = (dispatch) => ({
+    fetchPost: (postId) => dispatch(fetchPost(postId))
+  })
+
+  export default connect(mSTP, mDTP)(PostShow)
+
+  ```
 
 </details>
 
 
 <details>
   
-  <summary>TOGGLE</summary> 
+  <summary>correclt mSTP / mDTP</summary> 
+
+  (2 specs)
+
+  ```JSX
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  class PostShow extends React.Component {
+    render() {
+      return (
+        <div></div>
+      )
+    }
+  }
+
+  export default PostShow;
+  ```
 
 </details>
+
+
+<details>
+  
+  <summary>fetches the appropriate post after being mounted</summary> 
+
+  ```JSX
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  class PostShow extends React.Component {
+    
+    componentDidMount() {
+      this.props.fetchPost(this.props.match.params.postId)
+    }
+    
+  //   render() {
+  //     ...  
+  ```
+
+</details>
+
+
+<details>
+  
+  <summary>contain's the posts title / body</summary> 
+
+  (2 specs)
+
+  ```JSX
+  // import React from 'react';
+  // import { Link } from 'react-router-dom';
+
+  // class PostShow extends React.Component {
+    
+  //   componentDidMount() {
+  //     this.props.fetchPost(this.props.match.params.postId)
+  //   }
+    
+    render() {
+      return (
+        <div>
+          <h1>{this.props.post.title}</h1>
+          <p>{this.props.post.body}</p>
+        </div>
+      )
+    }
+  }
+
+  // export default PostShow;  
+  ```
+
+
+</details>
+
+
+<details>
+  
+  <summary>has a link to the post index</summary> 
+
+  ```JS
+  import React from 'react';
+  import { Link } from 'react-router-dom';
+
+  class PostShow extends React.Component {  
+    
+    componentDidMount() {
+      this.props.fetchPost(this.props.match.params.postId)
+    }
+
+    render() {
+      return (
+        <div>
+          <h1>{this.props.post.title}</h1>
+          <p>{this.props.post.body}</p>
+          <Link to='/'>PostIndex</Link>
+        </div>
+      )
+    }
+  }
+  export default PostShow;
+  ```
+
+</details>
+
+
+
 
 
